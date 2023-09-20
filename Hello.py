@@ -1,22 +1,8 @@
-# Copyright (c) Streamlit Inc. (2018-2022) Snowflake Inc. (2022)
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 import streamlit as st
 import random
 
 def main():
-    st.title("Mafia Game by Amir Vahed")
+    st.title("Mafia Game")
 
     mafia_count = st.number_input("Number of Mafia", min_value=0, value=0)
     citizen_count = st.number_input("Number of Citizens", min_value=0, value=0)
@@ -29,16 +15,27 @@ def main():
         name = st.text_input(f"Enter the name of Player {i + 1}", f"Player {i + 1}")
         player_names.append(name)
 
-    if st.button("Shuffle and Show Names"):
+    characters = []
+    for i in range(total_players):
+        character = st.text_input(f"Enter the character name for Player {i + 1}", f"Character {i + 1}")
+        characters.append(character)
+
+    if st.button("Assign Characters"):
         st.write(f"Total Players: {total_players}")
-        st.write("Shuffled Player Names:")
-
-        # Shuffle the player names
-        random.shuffle(player_names)
-
-        # Display names one by one
-        for i, name in enumerate(player_names):
-            st.write(f"Player {i + 1}: {name}")
+        st.write("Assigned Characters:")
+        
+        # Shuffle the characters
+        random.shuffle(characters)
+        
+        # Create a dictionary to assign characters to players
+        player_characters = {}
+        for i, player_name in enumerate(player_names):
+            character = characters[i % total_players]  # Loop through characters cyclically
+            player_characters[player_name] = character
+        
+        # Display assigned characters
+        for player, character in player_characters.items():
+            st.write(f"{player} is {character}")
 
 if __name__ == "__main__":
     main()
