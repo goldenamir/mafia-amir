@@ -26,7 +26,7 @@ def main():
         player_characters = {}
         for i, player_name in enumerate(player_names):
             character_color = "background-color: #f2f2f2;" if i % 2 == 0 else ""  # Alternate character input box color
-            character = st.text_input(f"Enter the character name", f"Character {i + 1}", key=f"character_{i}", style=character_color)
+            character = st.text_input(f"Enter the character name for {player_name}", f"Character {i + 1}", key=f"character_{i}", style=character_color)
             player_characters[player_name] = character
 
         # Display assigned characters
