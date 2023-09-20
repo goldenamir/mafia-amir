@@ -13,39 +13,32 @@
 # limitations under the License.
 
 import streamlit as st
-from streamlit.logger import get_logger
+import random
 
-LOGGER = get_logger(__name__)
+def main():
+    st.title("Mafia Game")
 
+    mafia_count = st.number_input("Number of Mafia", min_value=0, value=0)
+    citizen_count = st.number_input("Number of Citizens", min_value=0, value=0)
+    independent_count = st.number_input("Number of Independent Players", min_value=0, value=0)
 
-def run():
-    st.set_page_config(
-        page_title="Hello",
-        page_icon="👋",
-    )
+    total_players = mafia_count + citizen_count + independent_count
 
-    st.write("# Welcome to Streamlit! 👋")
+    player_names = []
+    for i in range(total_players):
+        name = st.text_input(f"Enter the name of Player {i + 1}", f"Player {i + 1}")
+        player_names.append(name)
 
-    st.sidebar.success("Select a demo above.")
+    if st.button("Shuffle and Show Names"):
+        st.write(f"Total Players: {total_players}")
+        st.write("Shuffled Player Names:")
 
-    st.markdown(
-        """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-    """
-    )
+        # Shuffle the player names
+        random.shuffle(player_names)
 
+        # Display names one by one
+        for i, name in enumerate(player_names):
+            st.write(f"Player {i + 1}: {name}")
 
 if __name__ == "__main__":
-    run()
+    main()
