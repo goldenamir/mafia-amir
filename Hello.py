@@ -25,13 +25,12 @@ def main():
         # Create a dictionary to assign characters to players
         player_characters = {}
         for i, player_name in enumerate(player_names):
-            character_color = "background-color: #f2f2f2;" if i % 2 == 0 else ""  # Alternate character input box color
-            character = st.text_input(f"Enter the character name for {player_name}", f"Character {i + 1}", key=f"character_{i}", style=character_color)
+            character = st.text_input(f"Enter the character name for {player_name}", f"Character {i + 1}")
             player_characters[player_name] = character
 
-        # Display assigned characters
-        for player, character in player_characters.items():
-            st.write(f"{player} is {character}")
+        # Display assigned characters as a table
+        character_data = {"Player": list(player_characters.keys()), "Character": list(player_characters.values())}
+        character_table = st.table(character_data)
 
 if __name__ == "__main__":
     main()
