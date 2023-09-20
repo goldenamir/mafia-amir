@@ -1,6 +1,9 @@
 import streamlit as st
 import random
 
+import streamlit as st
+import random
+
 def main():
     st.title("Mafia Game")
 
@@ -20,21 +23,24 @@ def main():
         name = st.text_input(f"Enter the name of Player {i + 1}", f"Player {i + 1}")
         player_names.append(name)
 
-    if st.button("Assign Characters"):
-        st.write(f"Total Players: {total_players}")
+    if len(character_names) == total_players:  # Check if the number of character names matches total players
+        if st.button("Assign Characters"):
+            st.write(f"Total Players: {total_players}")
 
-        # Shuffle the character names
-        shuffled_characters = character_names.copy()
-        random.shuffle(shuffled_characters)
+            # Shuffle the character names
+            shuffled_characters = character_names.copy()
+            random.shuffle(shuffled_characters)
 
-        # Create a dictionary to assign characters to players
-        player_characters = {}
-        for i in range(total_players):
-            player_characters[player_names[i]] = shuffled_characters[i]
+            # Create a dictionary to assign characters to players
+            player_characters = {}
+            for i in range(total_players):
+                player_characters[player_names[i]] = shuffled_characters[i]
 
-        # Display assigned characters as a table
-        character_data = {"Player": list(player_characters.keys()), "Character": list(player_characters.values())}
-        character_table = st.table(character_data)
+            # Display assigned characters as a table
+            character_data = {"Player": list(player_characters.keys()), "Character": list(player_characters.values())}
+            character_table = st.table(character_data)
+    else:
+        st.write("Please enter the same number of character names as the total number of players.")
 
 if __name__ == "__main__":
     main()
