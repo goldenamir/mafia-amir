@@ -16,7 +16,7 @@ import streamlit as st
 import random
 
 def main():
-    st.title("Mafia Game")
+    st.title("Mafia Game by Amir Vahed")
 
     mafia_count = st.number_input("Number of Mafia", min_value=0, value=0)
     citizen_count = st.number_input("Number of Citizens", min_value=0, value=0)
