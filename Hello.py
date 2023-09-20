@@ -15,29 +15,23 @@ def main():
         name = st.text_input(f"Enter the name of Player {i + 1}", f"Player {i + 1}")
         player_names.append(name)
 
-    characters = []
-    for i in range(total_players):
-        character = st.text_input(f"Enter the character name for Player {i + 1}", f"Character {i + 1}")
-        characters.append(character)
-
     if st.button("Assign Characters"):
         st.write(f"Total Players: {total_players}")
         st.write("Assigned Characters:")
-        
-        # Shuffle the characters
-        random.shuffle(characters)
-        
+
+        # Shuffle the player names
+        random.shuffle(player_names)
+
         # Create a dictionary to assign characters to players
         player_characters = {}
         for i, player_name in enumerate(player_names):
-            character = characters[i % total_players]  # Loop through characters cyclically
+            character_color = "background-color: #f2f2f2;" if i % 2 == 0 else ""  # Alternate character input box color
+            character = st.text_input(f"Enter the character name for {player_name}", f"Character {i + 1}", key=f"character_{i}", style=character_color)
             player_characters[player_name] = character
-        
-        # Display assigned characters with different colors for each row
-        for i, (player, character) in enumerate(player_characters.items()):
-            # Alternate row colors between light gray and white
-            row_color = "background-color: #f2f2f2;" if i % 2 == 0 else ""
-            st.write(f'<div style="{row_color}">{player} is {character}</div>', unsafe_allow_html=True)
+
+        # Display assigned characters
+        for player, character in player_characters.items():
+            st.write(f"{player} is {character}")
 
 if __name__ == "__main__":
     main()
