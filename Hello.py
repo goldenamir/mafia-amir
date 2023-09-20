@@ -10,23 +10,23 @@ def main():
 
     total_players = mafia_count + citizen_count + independent_count
 
-    player_names = []
+    character_names = []
     for i in range(total_players):
-        name = st.text_input(f"Enter the name of Player {i + 1}", f"Player {i + 1}")
-        player_names.append(name)
+        character = st.text_input(f"Enter the character name for Player {i + 1}", f"Character {i + 1}")
+        character_names.append(character)
 
     if st.button("Assign Characters"):
         st.write(f"Total Players: {total_players}")
         st.write("Assigned Characters:")
 
-        # Shuffle the player names
-        random.shuffle(player_names)
+        # Shuffle the character names
+        random.shuffle(character_names)
 
         # Create a dictionary to assign characters to players
         player_characters = {}
-        for i, player_name in enumerate(player_names):
-            character = st.text_input(f"Enter the character name for {player_name}", f"Character {i + 1}")
-            player_characters[player_name] = character
+        for i in range(total_players):
+            player_name = st.text_input(f"Enter the name of Player {i + 1}", f"Player {i + 1}")
+            player_characters[player_name] = character_names[i]
 
         # Display assigned characters as a table
         character_data = {"Player": list(player_characters.keys()), "Character": list(player_characters.values())}
