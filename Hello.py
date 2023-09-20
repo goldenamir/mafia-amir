@@ -15,18 +15,23 @@ def main():
         character = st.text_input(f"Enter the character name for Player {i + 1}", f"Character {i + 1}")
         character_names.append(character)
 
+    player_names = []
+    for i in range(total_players):
+        name = st.text_input(f"Enter the name of Player {i + 1}", f"Player {i + 1}")
+        player_names.append(name)
+
     if st.button("Assign Characters"):
         st.write(f"Total Players: {total_players}")
         st.write("Assigned Characters:")
 
         # Shuffle the character names
-        random.shuffle(character_names)
+        shuffled_characters = character_names.copy()
+        random.shuffle(shuffled_characters)
 
         # Create a dictionary to assign characters to players
         player_characters = {}
         for i in range(total_players):
-            player_name = st.text_input(f"Enter the name of Player {i + 1}", f"Player {i + 1}")
-            player_characters[player_name] = character_names[i]
+            player_characters[player_names[i]] = shuffled_characters[i]
 
         # Display assigned characters as a table
         character_data = {"Player": list(player_characters.keys()), "Character": list(player_characters.values())}
