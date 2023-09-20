@@ -2,7 +2,7 @@ import streamlit as st
 import random
 
 def main():
-    st.title("Mafia Game ba Amir Vahed")
+    st.title("Mafia Game")
 
     mafia_count = st.number_input("Number of Mafia", min_value=0, value=0)
     citizen_count = st.number_input("Number of Citizens", min_value=0, value=0)
@@ -33,9 +33,11 @@ def main():
             character = characters[i % total_players]  # Loop through characters cyclically
             player_characters[player_name] = character
         
-        # Display assigned characters
-        for player, character in player_characters.items():
-            st.write(f"{player} is {character}")
+        # Display assigned characters with different colors for each row
+        for i, (player, character) in enumerate(player_characters.items()):
+            # Alternate row colors between light gray and white
+            row_color = "background-color: #f2f2f2;" if i % 2 == 0 else ""
+            st.write(f'<div style="{row_color}">{player} is {character}</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
