@@ -28,11 +28,6 @@ def main():
         shuffled_characters = character_names.copy()
         random.shuffle(shuffled_characters)
 
-        # Create a dictionary to assign characters to players
-        player_characters = {}
-        for i in range(total_players):
-            player_characters[player_names[i]] = shuffled_characters[i]
-
         # Display assigned characters as a table
         character_data = {"Player": list(player_characters.keys()), "Character": list(player_characters.values())}
         character_table = st.table(character_data)
