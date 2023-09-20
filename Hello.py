@@ -1,9 +1,6 @@
 import streamlit as st
 import random
 
-import streamlit as st
-import random
-
 def main():
     st.title("Mafia Game")
 
@@ -15,7 +12,7 @@ def main():
 
     character_names = []
     for i in range(total_players):
-        character = st.text_input(f"Enter the character name", f"Character {i + 1}")
+        character = st.text_input("Enter the character name", f"Character {i + 1}")
         character_names.append(character)
 
     player_names = []
