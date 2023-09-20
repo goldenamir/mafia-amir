@@ -15,7 +15,7 @@ def main():
 
     character_names = []
     for i in range(total_players):
-        character = st.text_input(f"Enter the character name for Player {i + 1}", f"Character {i + 1}")
+        character = st.text_input(f"Enter the character name", f"Character {i + 1}")
         character_names.append(character)
 
     player_names = []
